@@ -2,6 +2,7 @@ package com.victorpereira.go4wod.services;
 
 
 import com.victorpereira.go4wod.domains.User;
+import com.victorpereira.go4wod.domains.enums.UserType;
 import com.victorpereira.go4wod.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
         newUser.setBirthDate(user.getBirthDate());
-        newUser.setType(user.getType());
+        newUser.setType(UserType.toEnum(user.getType().getCode()));
         return userRepository.save(newUser);
     }
 
