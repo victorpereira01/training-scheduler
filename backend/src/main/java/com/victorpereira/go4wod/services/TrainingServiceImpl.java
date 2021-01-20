@@ -1,19 +1,13 @@
 package com.victorpereira.go4wod.services;
 
 import com.victorpereira.go4wod.domains.Training;
-import com.victorpereira.go4wod.domains.User;
 import com.victorpereira.go4wod.repositories.TrainingRepository;
 import com.victorpereira.go4wod.services.exceptions.AlreadyExistsException;
 import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Service
