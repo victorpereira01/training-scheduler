@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -20,6 +21,5 @@ public class Training {
 
     private String wod;
 
-    private Date date;
-
+    private LocalDate date;
 }

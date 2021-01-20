@@ -16,4 +16,11 @@ public class ResourceExceptionHandler {
         StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), "Not found", e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
+
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<StandardError> alreadyExists(AlreadyExistsException e, HttpServletRequest request) {
+
+        StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), "Already exists", e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
 }

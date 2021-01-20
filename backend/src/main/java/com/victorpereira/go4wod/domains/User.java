@@ -28,5 +28,4 @@ public class User {
     private Date birthDate;
 
     private UserType type;
-
 }
