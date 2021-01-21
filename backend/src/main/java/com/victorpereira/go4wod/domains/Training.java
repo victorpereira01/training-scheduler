@@ -1,11 +1,13 @@
 package com.victorpereira.go4wod.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,4 +23,7 @@ public class Training {
     private String wod;
 
     private LocalDate date;
+
+    @ManyToMany(mappedBy = "trainings")
+    private List<User> users;
 }

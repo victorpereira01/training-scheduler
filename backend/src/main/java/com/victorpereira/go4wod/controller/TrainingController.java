@@ -1,9 +1,11 @@
 package com.victorpereira.go4wod.controller;
 
 import com.victorpereira.go4wod.domains.Training;
+import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.services.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -20,8 +22,9 @@ public class TrainingController {
     private TrainingService trainingService;
 
     @GetMapping
-    public ResponseEntity<List<Training>> findAll() {
-        List<Training> trainings = trainingService.findAll();
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<TrainingDTO>> findAll() {
+        List<TrainingDTO> trainings = trainingService.findAll();
         return ResponseEntity.ok().body(trainings);
     }
 

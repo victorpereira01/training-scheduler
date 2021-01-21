@@ -1,12 +1,13 @@
 package com.victorpereira.go4wod.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.victorpereira.go4wod.domains.enums.UserType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,7 +26,14 @@ public class User {
 
     private String password;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private UserType type;
+
+    @ManyToMany
+    @JoinTable(name = "tb_user_training",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "training_id"))
+    @Setter(AccessLevel.NONE)
+    private List<Training> trainings = new ArrayList<>();
 }

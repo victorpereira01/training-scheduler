@@ -1,6 +1,9 @@
 package com.victorpereira.go4wod.services;
 
+import com.victorpereira.go4wod.domains.Training;
 import com.victorpereira.go4wod.domains.User;
+import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
+import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.enums.UserType;
 import com.victorpereira.go4wod.repositories.UserRepository;
 import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -16,8 +20,10 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserDTO> findAll() {
+        List<User> users = userRepository.findAll();
+        users = users.stream().filter(user -> user.getType().equals(UserType.STUDENT)).collect(Collectors.toList());
+        return users.stream().map(UserDTO::new).collect(Collectors.toList());
     }
 
     @Override

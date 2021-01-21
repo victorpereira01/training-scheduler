@@ -1,9 +1,11 @@
 package com.victorpereira.go4wod.controller;
 
 import com.victorpereira.go4wod.domains.User;
+import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,8 +20,9 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> users = userService.findAll();
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<UserDTO>> findAll() {
+        List<UserDTO> users = userService.findAll();
         return ResponseEntity.ok().body(users);
     }
 

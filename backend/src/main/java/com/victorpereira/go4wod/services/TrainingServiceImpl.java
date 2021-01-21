@@ -1,6 +1,7 @@
 package com.victorpereira.go4wod.services;
 
 import com.victorpereira.go4wod.domains.Training;
+import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.repositories.TrainingRepository;
 import com.victorpereira.go4wod.services.exceptions.AlreadyExistsException;
 import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TrainingServiceImpl implements TrainingService {
@@ -17,8 +19,9 @@ public class TrainingServiceImpl implements TrainingService {
     private TrainingRepository trainingRepository;
 
     @Override
-    public List<Training> findAll() {
-        return trainingRepository.findAll();
+    public List<TrainingDTO> findAll() {
+        List<Training> products = trainingRepository.findAll();
+        return products.stream().map(TrainingDTO::new).collect(Collectors.toList());
     }
 
     @Override
@@ -55,7 +58,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     private boolean alreadyExists(Training training) {
-        List<Training> trainings = findAll();
+        List<TrainingDTO> trainings = findAll();
         if (trainings.size() == 0) {
             return false;
         }
