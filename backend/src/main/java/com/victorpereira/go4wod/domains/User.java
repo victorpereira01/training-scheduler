@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_user")
@@ -36,4 +35,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "training_id"))
     @Setter(AccessLevel.NONE)
     private List<Training> trainings = new ArrayList<>();
+
+    public User(Long id, String name, String email, String password, LocalDate birthDate, UserType type) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.type = type;
+    }
 }

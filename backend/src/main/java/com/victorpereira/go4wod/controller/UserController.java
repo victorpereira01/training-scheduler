@@ -2,6 +2,7 @@ package com.victorpereira.go4wod.controller;
 
 import com.victorpereira.go4wod.domains.User;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
+import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 import com.victorpereira.go4wod.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,16 +28,16 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> insert(@RequestBody User user) {
+    public ResponseEntity<UserNewDTO> insert(@RequestBody UserNewDTO user) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(user.getId()).toUri();
-        User newUser = userService.insertUser(user);
+        UserNewDTO newUser = userService.insertUser(user);
         return ResponseEntity.created(uri).body(newUser);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
-        User newUser = userService.updateUser(id, user);
+    public ResponseEntity<UserNewDTO> update(@PathVariable Long id, @RequestBody UserNewDTO user) {
+        UserNewDTO newUser = userService.updateUser(id, user);
         return ResponseEntity.ok().body(newUser);
     }
 

@@ -10,13 +10,13 @@ public interface TrainingService {
 
     List<TrainingDTO> findAll();
 
-    Training findById(Long id);
+    TrainingDTO findById(Long id);
 
-    Training findByDate(LocalDate date);
+    TrainingDTO findByDate(LocalDate date);
 
-    Training insertTraining(Training training);
+    TrainingDTO insertTraining(TrainingDTO training);
 
-    Training updateTraining(Long id, Training training);
+    TrainingDTO updateTraining(Long id, TrainingDTO training);
 
     void deleteTraining(Long id);
 }

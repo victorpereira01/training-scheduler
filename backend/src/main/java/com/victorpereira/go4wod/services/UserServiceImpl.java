@@ -1,9 +1,8 @@
 package com.victorpereira.go4wod.services;
 
-import com.victorpereira.go4wod.domains.Training;
 import com.victorpereira.go4wod.domains.User;
-import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
+import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 import com.victorpereira.go4wod.domains.enums.UserType;
 import com.victorpereira.go4wod.repositories.UserRepository;
 import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
@@ -27,25 +26,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() ->
-                new ObjectNotFoundException("Object not found for id: " + id + ", of type: " + User.class.getName()));
+    public UserNewDTO findById(Long id) {
+        return new UserNewDTO(userRepository.findById(id).orElseThrow(() ->
+                new ObjectNotFoundException("Object not found for id: " + id + ", of type: " + User.class.getName())));
     }
 
     @Override
-    public User insertUser(User user) {
-        return userRepository.save(user);
+    public UserNewDTO insertUser(UserNewDTO userNewDto) {
+        User user = new User(userNewDto.getId(), userNewDto.getName(), userNewDto.getEmail(),
+                userNewDto.getPassword(), userNewDto.getBirthDate(), userNewDto.getType());
+        return new UserNewDTO(userRepository.save(user));
     }
 
     @Override
-    public User updateUser(Long id, User user) {
-        User newUser = findById(id);
-        newUser.setName(user.getName());
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(user.getPassword());
-        newUser.setBirthDate(user.getBirthDate());
-        newUser.setType(UserType.toEnum(user.getType().getCode()));
-        return userRepository.save(newUser);
+    public UserNewDTO updateUser(Long id, UserNewDTO newUser) {
+        findById(id);
+        User user = new User(id, newUser.getName(), newUser.getEmail(), newUser.getPassword(),
+                newUser.getBirthDate(), newUser.getType());
+        return new UserNewDTO(userRepository.save(user));
     }
 
     @Override

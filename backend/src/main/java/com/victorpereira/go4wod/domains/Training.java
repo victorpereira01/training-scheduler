@@ -24,6 +24,6 @@ public class Training {
 
     private LocalDate date;
 
-    @ManyToMany(mappedBy = "trainings")
+    @ManyToMany(mappedBy = "trainings", fetch = FetchType.EAGER)
     private List<User> users;
 }

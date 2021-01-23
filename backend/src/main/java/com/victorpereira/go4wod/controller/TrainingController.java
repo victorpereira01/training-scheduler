@@ -29,22 +29,22 @@ public class TrainingController {
     }
 
     @GetMapping(value = "/{date}")
-    public ResponseEntity<Training> findByDate(@PathVariable String date) throws ParseException {
-        Training training = trainingService.findByDate(LocalDate.parse(date));
+    public ResponseEntity<TrainingDTO> findByDate(@PathVariable String date) throws ParseException {
+        TrainingDTO training = trainingService.findByDate(LocalDate.parse(date));
         return ResponseEntity.ok().body(training);
     }
 
     @PostMapping
-    public ResponseEntity<Training> insert(@RequestBody Training training) {
+    public ResponseEntity<TrainingDTO> insert(@RequestBody TrainingDTO training) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(training.getId()).toUri();
-        Training newTraining = trainingService.insertTraining(training);
+        TrainingDTO newTraining = trainingService.insertTraining(training);
         return ResponseEntity.created(uri).body(newTraining);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Training> update(@PathVariable Long id, @RequestBody Training training) {
-        Training newTraining = trainingService.updateTraining(id, training);
+    public ResponseEntity<TrainingDTO> update(@PathVariable Long id, @RequestBody TrainingDTO training) {
+        TrainingDTO newTraining = trainingService.updateTraining(id, training);
         return ResponseEntity.ok().body(newTraining);
     }
 

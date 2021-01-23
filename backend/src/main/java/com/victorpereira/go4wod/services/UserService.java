@@ -2,6 +2,7 @@ package com.victorpereira.go4wod.services;
 
 import com.victorpereira.go4wod.domains.User;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
+import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 
 import java.util.List;
 
@@ -9,11 +10,11 @@ public interface UserService {
 
     List<UserDTO> findAll();
 
-    User findById(Long id);
+    UserNewDTO findById(Long id);
 
-    User insertUser(User user);
+    UserNewDTO insertUser(UserNewDTO user);
 
-    User updateUser(Long id, User user);
+    UserNewDTO updateUser(Long id, UserNewDTO user);
 
     void deleteUser(Long id);
 }
