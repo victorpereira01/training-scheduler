@@ -1,6 +1,5 @@
 package com.victorpereira.go4wod.controller;
 
-import com.victorpereira.go4wod.domains.Training;
 import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.services.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.victorpereira.go4wod.domains;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.victorpereira.go4wod.domains.enums.UserType;
 import lombok.*;
 

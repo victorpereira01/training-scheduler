@@ -1,6 +1,5 @@
 package com.victorpereira.go4wod.domains;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

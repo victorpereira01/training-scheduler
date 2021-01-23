@@ -2,13 +2,10 @@ package com.victorpereira.go4wod.domains.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.victorpereira.go4wod.domains.User;
-import com.victorpereira.go4wod.domains.enums.UserType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
