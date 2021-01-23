@@ -1,5 +1,6 @@
 package com.victorpereira.go4wod.domains.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.victorpereira.go4wod.domains.User;
 import com.victorpereira.go4wod.domains.enums.UserType;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class UserNewDTO {
 
     private UserType type;
 
+    @JsonIgnore
     private List<TrainingDTO> trainings = new ArrayList<>();
 
     public UserNewDTO(Long id, String name, String email, String password, LocalDate birthDate, UserType type) {

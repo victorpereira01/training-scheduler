@@ -1,6 +1,6 @@
 package com.victorpereira.go4wod.controller;
 
-import com.victorpereira.go4wod.domains.User;
+import com.victorpereira.go4wod.domains.dtos.TrainingUserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 import com.victorpereira.go4wod.services.UserService;
@@ -44,6 +44,31 @@ public class UserController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/trainings")
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<TrainingUserDTO>> findAllTrainingsByUserId(@PathVariable Long id) {
+        List<TrainingUserDTO> trainingList = userService.findAllTrainingsByUserId(id);
+        return ResponseEntity.ok().body(trainingList);
+    }
+
+    @GetMapping(value = "/{userId}/trainings/{trainingId}")
+    @Transactional(readOnly = true)
+    public ResponseEntity<TrainingUserDTO> findOneTrainingByUserId(
+            @PathVariable("userId") Long userId,
+            @PathVariable("trainingId") Long trainingId) {
+        TrainingUserDTO training = userService.findOneTrainingByUserId(userId, trainingId);
+        return ResponseEntity.ok().body(training);
+    }
+
+    @DeleteMapping(value = "/{userId}/trainings/{trainingId}")
+    @Transactional
+    public ResponseEntity<Void> deleteOneTrainingByUserId(
+            @PathVariable("userId") Long userId,
+            @PathVariable("trainingId") Long trainingId) {
+        userService.deleteOneTrainingByUserId(userId, trainingId);
         return ResponseEntity.noContent().build();
     }
 }

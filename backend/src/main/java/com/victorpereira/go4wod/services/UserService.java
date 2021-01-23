@@ -1,6 +1,6 @@
 package com.victorpereira.go4wod.services;
 
-import com.victorpereira.go4wod.domains.User;
+import com.victorpereira.go4wod.domains.dtos.TrainingUserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 
@@ -17,4 +17,10 @@ public interface UserService {
     UserNewDTO updateUser(Long id, UserNewDTO user);
 
     void deleteUser(Long id);
+
+    List<TrainingUserDTO> findAllTrainingsByUserId(Long id);
+
+    TrainingUserDTO findOneTrainingByUserId(Long userId, Long trainingId);
+
+    void deleteOneTrainingByUserId(Long userId, Long trainingId);
 }
