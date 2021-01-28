@@ -10,8 +10,20 @@ function Routes() {
     return (
         <NavigationContainer>
             <Stack.Navigator headerMode='none'>
-                <Stack.Screen name="Landing" component={Landing} ></Stack.Screen>
-                <Stack.Screen name="Login" component={Login}></Stack.Screen>
+                <Stack.Screen
+                    name="Landing"
+                    component={Landing}
+                    options={{
+                        animationEnabled: false,
+                    }}
+                ></Stack.Screen>
+                <Stack.Screen
+                    name="Login"
+                    component={Login}
+                    options={{
+                        animationEnabled: false,
+                    }}
+                ></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     )
