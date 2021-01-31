@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
 import MainButton from '../../components/MainButton';
+import AltButton from '../../components/AltButton';
 
 export default function Landing() {
 
@@ -12,6 +12,10 @@ export default function Landing() {
         navigation.navigate('Login');
     }
 
+    const handleRegister = () => {
+        navigation.navigate('Register');
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -19,9 +23,7 @@ export default function Landing() {
                 <Text style={styles.title}>GO4WOD</Text>
                 <Text style={styles.text}>Você pode se sentir dolorido amanhã ou pode sentir pena amanhã. Você escolhe.</Text>
                 <MainButton name="Entrar" handleOnPress={handleLogin} />
-                <RectButton style={styles.registerButton}>
-                    <Text style={styles.registerButtonText}>Registrar-se</Text>
-                </RectButton>
+                <AltButton name="Registrar-se" handleOnPress={handleRegister}/>
             </View>
         </View>
     );
