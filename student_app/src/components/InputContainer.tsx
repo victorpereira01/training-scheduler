@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingBottom: 5,
         fontFamily: 'OpenSans_700Bold',
-        color: '#17B978',
+        color: '#17B978'
     },
     input: {
         color: 'white',

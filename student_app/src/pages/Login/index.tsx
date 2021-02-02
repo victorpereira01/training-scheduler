@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from "react-native";
 import InputContainer from '../../components/InputContainer';
@@ -5,8 +6,10 @@ import MainButton from '../../components/MainButton';
 
 export default function Login() {
 
-    const onpress = () => {
-        console.warn("#!@#!@!@#");
+    const navigation = useNavigation();
+
+    const handleLogin = () => {
+        navigation.navigate('Home');
     }
 
     return (
@@ -17,7 +20,7 @@ export default function Login() {
                 <Text style={styles.text}>Você pode se sentir dolorido amanhã ou pode sentir pena amanhã. Você escolhe.</Text>
                 <InputContainer name="E-mail" />
                 <InputContainer name="Password" />
-                <MainButton name="Confirmar" handleOnPress={onpress} />
+                <MainButton name="Confirmar" handleOnPress={handleLogin} />
             </View>
         </View>
     );
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#2e2e2e',
+        backgroundColor: '#2e2e2e'
     },
     content: {
         alignItems: 'center',

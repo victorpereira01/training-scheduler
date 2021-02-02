@@ -8,7 +8,6 @@ type Props = {
 }
 
 export default function MainButton({ name, handleOnPress }: Props) {
-
     return (
         <View style={styles.container}>
             <RectButton style={styles.enterButton} onPress={handleOnPress}>

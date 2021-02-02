@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import DatePucker from 'react-native-datepicker';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Home from './pages/Home';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,10 @@ function Routes() {
                 <Stack.Screen
                     name="Register"
                     component={Register}
+                ></Stack.Screen>
+                <Stack.Screen
+                    name="Home"
+                    component={Home}
                 ></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
