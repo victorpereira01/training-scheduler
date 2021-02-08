@@ -27,8 +27,8 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public List<TrainingDTO> findAll() {
-        List<Training> products = trainingRepository.findAll();
-        return products.stream().map(TrainingDTO::new).collect(Collectors.toList());
+        List<Training> trainings = trainingRepository.findAll();
+        return trainings.stream().map(TrainingDTO::new).collect(Collectors.toList());
     }
 
     @Override
