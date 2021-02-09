@@ -1,11 +1,8 @@
 package com.victorpereira.go4wod.service;
 
 import com.victorpereira.go4wod.domains.Training;
-import com.victorpereira.go4wod.domains.User;
 import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
-import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
-import com.victorpereira.go4wod.domains.enums.UserType;
 import com.victorpereira.go4wod.repositories.TrainingRepository;
 import com.victorpereira.go4wod.repositories.UserRepository;
 import com.victorpereira.go4wod.services.TrainingServiceImpl;
@@ -29,7 +26,6 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 @ExtendWith(MockitoExtension.class)
-@MockitoSettings(strictness = Strictness.LENIENT)
 public class TrainingServiceTest {
 
     @Mock
@@ -69,7 +65,6 @@ public class TrainingServiceTest {
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
         when(trainingRepository.findAll()).thenReturn(List.of(expectedSavedTraining));
-        when(trainingRepository.save(expectedSavedTraining)).thenReturn(expectedSavedTraining);
 
         assertThrows(AlreadyExistsException.class, () -> trainingService.insertTraining(expectedTrainingDTO));
     }
@@ -123,9 +118,6 @@ public class TrainingServiceTest {
         expectedSavedTraining.setDate(LocalDate.now());
         expectedSavedTraining.setUsers(new ArrayList<>());
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
-
-        when(trainingRepository.findAll()).thenReturn(List.of(expectedSavedTraining));
-        when(trainingRepository.save(expectedSavedTraining)).thenReturn(expectedSavedTraining);
 
         assertThrows(ObjectNotFoundException.class, () -> trainingService.findByDate(expectedTrainingDTO.getDate()));
     }

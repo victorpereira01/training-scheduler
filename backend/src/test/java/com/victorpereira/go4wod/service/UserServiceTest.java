@@ -26,7 +26,6 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 @ExtendWith(MockitoExtension.class)
-@MockitoSettings(strictness = Strictness.LENIENT)
 public class UserServiceTest {
 
     @Mock
@@ -46,7 +45,6 @@ public class UserServiceTest {
         user.setType(UserType.STUDENT);
         UserNewDTO userNewDTO = new UserNewDTO(user);
 
-        when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
         when(userRepository.save(user)).thenReturn(user);
 
         UserNewDTO createdUser = userService.insertUser(userNewDTO);
