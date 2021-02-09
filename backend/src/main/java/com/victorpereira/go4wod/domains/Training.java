@@ -25,4 +25,10 @@ public class Training {
 
     @ManyToMany(mappedBy = "trainings", fetch = FetchType.EAGER)
     private List<User> users;
+
+    public Training(Long id, String wod, LocalDate date) {
+        this.id = id;
+        this.wod = wod;
+        this.date = date;
+    }
 }

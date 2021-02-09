@@ -1,5 +1,6 @@
 package com.victorpereira.go4wod.service;
 
+import com.victorpereira.go4wod.builder.TrainingBuilder;
 import com.victorpereira.go4wod.domains.Training;
 import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
@@ -13,10 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
-import org.mockito.quality.Strictness;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,11 +37,7 @@ public class TrainingServiceTest {
 
     @Test
     void whenInsertTrainingThenShouldBeCreated() {
-        Training expectedSavedTraining = new Training();
-        expectedSavedTraining.setId(1L);
-        expectedSavedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        expectedSavedTraining.setDate(LocalDate.now());
-        expectedSavedTraining.setUsers(new ArrayList<>());
+        Training expectedSavedTraining = TrainingBuilder.builder().build().toTraining();
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
         when(trainingRepository.findAll()).thenReturn(new ArrayList<>());
@@ -57,11 +51,7 @@ public class TrainingServiceTest {
 
     @Test
     void whenInsertTrainingThenAlreadyExistsExceptionShouldBeThrown() {
-        Training expectedSavedTraining = new Training();
-        expectedSavedTraining.setId(1L);
-        expectedSavedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        expectedSavedTraining.setDate(LocalDate.now());
-        expectedSavedTraining.setUsers(new ArrayList<>());
+        Training expectedSavedTraining = TrainingBuilder.builder().build().toTraining();
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
         when(trainingRepository.findAll()).thenReturn(List.of(expectedSavedTraining));
@@ -71,11 +61,7 @@ public class TrainingServiceTest {
 
     @Test
     void whenFindAllTrainingsThenShouldReturnTrainingsList() {
-        Training expectedSavedTraining = new Training();
-        expectedSavedTraining.setId(1L);
-        expectedSavedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        expectedSavedTraining.setDate(LocalDate.now());
-        expectedSavedTraining.setUsers(new ArrayList<>());
+        Training expectedSavedTraining = TrainingBuilder.builder().build().toTraining();
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
         when(trainingRepository.findAll()).thenReturn(Collections.singletonList(expectedSavedTraining));
@@ -94,11 +80,7 @@ public class TrainingServiceTest {
 
     @Test
     void whenFindTrainingByDateThenShouldReturnTraining() {
-        Training expectedSavedTraining = new Training();
-        expectedSavedTraining.setId(1L);
-        expectedSavedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        expectedSavedTraining.setDate(LocalDate.now());
-        expectedSavedTraining.setUsers(new ArrayList<>());
+        Training expectedSavedTraining = TrainingBuilder.builder().build().toTraining();
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
         when(trainingRepository.findByDate(expectedSavedTraining.getDate()))
@@ -112,11 +94,7 @@ public class TrainingServiceTest {
 
     @Test
     void whenFindTrainingByDateThenObjectNotFoundShouldBeThrown() {
-        Training expectedSavedTraining = new Training();
-        expectedSavedTraining.setId(1L);
-        expectedSavedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        expectedSavedTraining.setDate(LocalDate.now());
-        expectedSavedTraining.setUsers(new ArrayList<>());
+        Training expectedSavedTraining = TrainingBuilder.builder().build().toTraining();
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
         assertThrows(ObjectNotFoundException.class, () -> trainingService.findByDate(expectedTrainingDTO.getDate()));
@@ -124,17 +102,12 @@ public class TrainingServiceTest {
 
     @Test
     void whenUpdateTrainingThenShouldUpdateTraining() {
-        Training savedTraining = new Training();
-        savedTraining.setId(1L);
-        savedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        savedTraining.setDate(LocalDate.now());
+        Training savedTraining = TrainingBuilder.builder().build().toTraining();
         savedTraining.setUsers(new ArrayList<>());
 
-        Training updatedTraining = new Training();
-        updatedTraining.setId(1L);
-        updatedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        updatedTraining.setDate(LocalDate.now());
-        updatedTraining.setUsers(new ArrayList<>());
+        Training updatedTraining = TrainingBuilder.builder()
+                .wod("Fusce sed urna ac enim faucibus facilisis non nec orci.")
+                .build().toTraining();
         TrainingDTO updatedTrainingDTO = new TrainingDTO(updatedTraining);
 
         List<Long> usersId = updatedTrainingDTO.getUsers().stream().map(UserDTO::getId).collect(Collectors.toList());
@@ -150,11 +123,7 @@ public class TrainingServiceTest {
 
     @Test
     void whenDeleteTrainingThenShouldDeleteTraining() {
-        Training expectedSavedTraining = new Training();
-        expectedSavedTraining.setId(1L);
-        expectedSavedTraining.setWod("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-        expectedSavedTraining.setDate(LocalDate.now());
-        expectedSavedTraining.setUsers(new ArrayList<>());
+        Training expectedSavedTraining = TrainingBuilder.builder().build().toTraining();
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
         when(trainingRepository.findById(expectedSavedTraining.getId())).thenReturn(Optional.of(expectedSavedTraining));
