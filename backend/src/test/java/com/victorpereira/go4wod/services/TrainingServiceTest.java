@@ -1,4 +1,4 @@
-package com.victorpereira.go4wod.service;
+package com.victorpereira.go4wod.services;
 
 import com.victorpereira.go4wod.builder.TrainingBuilder;
 import com.victorpereira.go4wod.domains.Training;
@@ -6,7 +6,6 @@ import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.repositories.TrainingRepository;
 import com.victorpereira.go4wod.repositories.UserRepository;
-import com.victorpereira.go4wod.services.TrainingServiceImpl;
 import com.victorpereira.go4wod.services.exceptions.AlreadyExistsException;
 import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;

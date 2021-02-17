@@ -1,11 +1,10 @@
-package com.victorpereira.go4wod.service;
+package com.victorpereira.go4wod.services;
 
 import com.victorpereira.go4wod.builder.UserBuilder;
 import com.victorpereira.go4wod.domains.User;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 import com.victorpereira.go4wod.repositories.UserRepository;
-import com.victorpereira.go4wod.services.UserServiceImpl;
 import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
