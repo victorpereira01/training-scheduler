@@ -28,7 +28,7 @@ public class TrainingController {
     }
 
     @GetMapping(value = "/{date}")
-    public ResponseEntity<TrainingDTO> findByDate(@PathVariable String date) throws ParseException {
+    public ResponseEntity<TrainingDTO> findByDate(@PathVariable String date) {
         TrainingDTO training = trainingService.findByDate(LocalDate.parse(date));
         return ResponseEntity.ok().body(training);
     }

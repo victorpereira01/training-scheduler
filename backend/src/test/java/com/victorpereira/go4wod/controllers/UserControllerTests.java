@@ -5,7 +5,6 @@ import com.victorpereira.go4wod.builder.UserBuilder;
 import com.victorpereira.go4wod.controller.UserController;
 import com.victorpereira.go4wod.domains.Training;
 import com.victorpereira.go4wod.domains.User;
-import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.domains.dtos.TrainingUserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
@@ -17,17 +16,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import java.net.URI;
 import java.util.Collections;
-import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.hamcrest.core.Is.is;
