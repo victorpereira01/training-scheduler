@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';
 
@@ -19,7 +19,10 @@ export default function Login() {
                 <Text style={styles.title}>GO4WOD</Text>
                 <Text style={styles.text}>Você pode se sentir dolorido amanhã ou pode sentir pena amanhã. Você escolhe.</Text>
                 <InputContainer name="E-mail" />
-                <InputContainer name="Password" />
+                <View style={styles.inputContainer}>
+                    <Text style={styles.inputText}>Password</Text>
+                    <TextInput secureTextEntry style={styles.input}></TextInput>
+                </View>
                 <MainButton name="Confirmar" handleOnPress={handleLogin} />
             </View>
         </View>
@@ -55,5 +58,24 @@ const styles = StyleSheet.create({
     },
     padding: {
         marginTop: 16
+    },
+    inputContainer: {
+        width: '85%'
+    },
+    inputText: {
+        marginTop: 16,
+        fontSize: 20,
+        paddingBottom: 5,
+        fontFamily: 'OpenSans_700Bold',
+        color: '#17B978'
+    },
+    input: {
+        color: 'white',
+        fontSize: 18,
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: '#17B978',
+        height: 40,
+        padding: 10
     }
 })

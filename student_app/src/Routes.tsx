@@ -5,6 +5,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import Schedule from './pages/Schedule';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,10 @@ function Routes() {
                 <Stack.Screen
                     name="Home"
                     component={Home}
+                ></Stack.Screen>
+                <Stack.Screen
+                    name="Schedule"
+                    component={Schedule}
                 ></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
