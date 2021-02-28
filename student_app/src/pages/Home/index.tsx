@@ -17,6 +17,14 @@ export default function Home() {
         navigation.navigate('TrainingHistory');
     }
 
+    const handleNavigateToProfile = () => {
+        navigation.navigate('Profile');
+    }
+
+    const handleNavigateLogout = () => {
+        navigation.navigate('Login');
+    }
+
     return (
         <View style={styles.container}>
             <Header />
@@ -28,10 +36,10 @@ export default function Home() {
                     <HomeMainButton title="Treinos Agendados" handleOnPress={handleNavigateToHistory} />
                 </View>
                 <View style={styles.button}>
-                    <HomeMainButton title="Perfil" handleOnPress={() => { }} />
+                    <HomeMainButton title="Perfil" handleOnPress={handleNavigateToProfile} />
                 </View>
                 <View style={styles.button}>
-                    <HomeAltButton title="Sair" />
+                    <HomeAltButton title="Sair" handleOnPress={handleNavigateLogout} />
                 </View>
             </View>
         </View>

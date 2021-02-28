@@ -1,10 +1,10 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function ScheduledItem() {
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.hour}>15/02</Text>
                 <Text style={styles.hour}>13:00</Text>
@@ -12,7 +12,7 @@ export default function ScheduledItem() {
             <View style={styles.iconContainer}>
                 <Icon style={styles.icon} name="trash" size={18} color="#17B978" />
             </View>
-        </SafeAreaView>
+        </View>
     )
 }
 
