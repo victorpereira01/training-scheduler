@@ -13,21 +13,25 @@ export default function Home() {
         navigation.navigate('Schedule');
     }
 
+    const handleNavigateToHistory = () => {
+        navigation.navigate('TrainingHistory');
+    }
+
     return (
         <View style={styles.container}>
             <Header />
-            <View style={styles.buttonContainer}> 
+            <View style={styles.buttonContainer}>
                 <View style={styles.button}>
                     <HomeMainButton title="Agende um Treino" handleOnPress={handleNavigateToSchedule} />
                 </View>
                 <View style={styles.button}>
-                    <HomeMainButton title="Treinos Agendados" handleOnPress={() => {}}/>
+                    <HomeMainButton title="Treinos Agendados" handleOnPress={handleNavigateToHistory} />
                 </View>
                 <View style={styles.button}>
-                    <HomeMainButton title="Perfil" handleOnPress={() => {}} />
+                    <HomeMainButton title="Perfil" handleOnPress={() => { }} />
                 </View>
                 <View style={styles.button}>
-                    <HomeAltButton title="Sair"/>
+                    <HomeAltButton title="Sair" />
                 </View>
             </View>
         </View>

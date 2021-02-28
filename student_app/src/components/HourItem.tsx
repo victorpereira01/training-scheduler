@@ -6,7 +6,6 @@ type Props = {
 }
 
 export default function HourItem({ hour }: Props) {
-
     return (
         <View style={styles.container}>
             <Text style={styles.hour}>{hour}:00</Text>

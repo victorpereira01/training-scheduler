@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Schedule from './pages/Schedule';
+import TrainingHistory from './pages/TrainingHistory';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,10 @@ function Routes() {
                 <Stack.Screen
                     name="Schedule"
                     component={Schedule}
+                ></Stack.Screen>
+                <Stack.Screen
+                    name="TrainingHistory"
+                    component={TrainingHistory}
                 ></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
