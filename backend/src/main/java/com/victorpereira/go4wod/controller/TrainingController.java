@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.text.ParseException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,8 +28,9 @@ public class TrainingController {
 
     @GetMapping(value = "/{date}")
     public ResponseEntity<TrainingDTO> findByDate(@PathVariable String date) {
-        TrainingDTO training = trainingService.findByDate(LocalDate.parse(date));
-        return ResponseEntity.ok().body(training);
+        String formattedDate = date.concat("T00:00:00");
+        TrainingDTO trainingDTO = trainingService.findByDate(LocalDateTime.parse(formattedDate));
+        return ResponseEntity.ok().body(trainingDTO);
     }
 
     @PostMapping

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,12 +20,12 @@ public class TrainingDTO implements Serializable {
 
     private String wod;
 
-    private LocalDate date;
+    private LocalDateTime date;
 
     @Transient
     private List<UserDTO> users;
 
-    public TrainingDTO(Long id, String wod, LocalDate date) {
+    public TrainingDTO(Long id, String wod, LocalDateTime date) {
         this.id = id;
         this.wod = wod;
         this.date = date;

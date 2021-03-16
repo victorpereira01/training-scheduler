@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,14 +39,16 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public TrainingDTO findByDate(LocalDate date) {
-        return new TrainingDTO(trainingRepository.findByDate(date).orElseThrow(() ->
+    public TrainingDTO findByDate(LocalDateTime date) {
+        LocalDateTime formatedDate = formatDateToInsert(date);
+        return new TrainingDTO(trainingRepository.findByDate(formatedDate).orElseThrow(() ->
                 new ObjectNotFoundException("Object not found for date: " + date + ", of type: " + Training.class.getName())));
     }
 
     @Override
     public TrainingDTO insertTraining(TrainingDTO training) {
         if (!alreadyExists(training)) {
+            training.setDate(formatDateToInsert(training.getDate()));
             Training newTraining = new Training(training.getId(), training.getWod(), training.getDate(), new ArrayList<>());
             return new TrainingDTO(trainingRepository.save(newTraining));
         } else {
@@ -78,5 +81,11 @@ public class TrainingServiceImpl implements TrainingService {
         }
         return trainings.stream().anyMatch(trn ->
                 trn.getDate().equals(training.getDate()));
+    }
+
+    private LocalDateTime formatDateToInsert(LocalDateTime localDateTime) {
+        String[] splittedDate = localDateTime.toString().split("T");
+        String date = splittedDate[0] + "T00:00:00";
+        return LocalDateTime.parse(date);
     }
 }

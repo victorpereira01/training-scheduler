@@ -5,6 +5,7 @@ import com.victorpereira.go4wod.domains.User;
 import lombok.Builder;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class TrainingBuilder {
     private final String wod = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
     @Builder.Default
-    private final LocalDate date = LocalDate.now();
+    private final LocalDateTime date = LocalDateTime.now();
 
     @Builder.Default
     private final List<User> users = new ArrayList<>();

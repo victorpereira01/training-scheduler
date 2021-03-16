@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface TrainingRepository extends JpaRepository<Training, Long> {
 
-    Optional<Training> findByDate(LocalDate date);
+    Optional<Training> findByDate(LocalDateTime date);
 
     @Query(value = "SELECT trn.id, trn.wod, trn.date FROM tb_training trn INNER JOIN tb_user_training utr " +
             "ON trn.id = utr.training_id WHERE utr.user_id = :id", nativeQuery = true)
