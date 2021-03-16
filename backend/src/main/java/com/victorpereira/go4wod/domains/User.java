@@ -1,5 +1,7 @@
 package com.victorpereira.go4wod.domains;
 
+import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
+import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.enums.UserType;
 import lombok.*;
 
@@ -42,5 +44,16 @@ public class User {
         this.password = password;
         this.birthDate = birthDate;
         this.type = type;
+    }
+
+    public User(Long id, String name, String email, String password, LocalDate birthDate,
+                UserType type, List<Training> trainings) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.type = type;
+        this.trainings = trainings;
     }
 }

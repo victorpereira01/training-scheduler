@@ -4,6 +4,7 @@ import com.victorpereira.go4wod.domains.dtos.TrainingUserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface UserService {
@@ -23,4 +24,6 @@ public interface UserService {
     TrainingUserDTO findOneTrainingByUserId(Long userId, Long trainingId);
 
     void deleteOneTrainingByUserId(Long userId, Long trainingId);
+
+    void subscribeUserToTraining(Long userId, LocalDateTime date);
 }

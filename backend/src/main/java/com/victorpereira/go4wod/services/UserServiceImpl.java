@@ -2,6 +2,7 @@ package com.victorpereira.go4wod.services;
 
 import com.victorpereira.go4wod.domains.Training;
 import com.victorpereira.go4wod.domains.User;
+import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import com.victorpereira.go4wod.domains.dtos.TrainingUserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
@@ -12,6 +13,9 @@ import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TrainingRepository trainingRepository;
+
+    @Autowired
+    private TrainingService trainingService;
 
     @Override
     public List<UserDTO> findAll() {
@@ -77,5 +84,25 @@ public class UserServiceImpl implements UserService {
         findById(userId);
         findOneTrainingByUserId(userId, trainingId);
         trainingRepository.deleteOneTrainingByUserId(userId, trainingId);
+    }
+
+    @Override
+    public void subscribeUserToTraining(Long userId, LocalDateTime date) {
+        UserNewDTO userNewDTO = findById(userId);
+        UserDTO userDTO = findAll().stream().filter(usr -> usr.getId().equals(userId)).findFirst().get();
+
+        Training training = trainingRepository.findByDate(formatDate(date)).orElseThrow(() ->
+                new ObjectNotFoundException("Object not found for date: " + date + ", of type: " + Training.class.getName()));
+        userDTO.setTrainings(Collections.singletonList(new TrainingDTO(training)));
+
+        User updatedUser = new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(), userNewDTO.getPassword(),
+                userNewDTO.getBirthDate(), userNewDTO.getType(), Collections.singletonList(training));
+        userRepository.save(updatedUser);
+    }
+
+    private LocalDateTime formatDate(LocalDateTime localDateTime) {
+        String[] splittedDate = localDateTime.toString().split("T");
+        String date = splittedDate[0] + "T00:00:00";
+        return LocalDateTime.parse(date);
     }
 }

@@ -1,5 +1,6 @@
 package com.victorpereira.go4wod.domains;
 
+import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
