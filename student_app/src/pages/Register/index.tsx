@@ -4,6 +4,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';
 import DatePicker from 'react-native-datepicker';
+import Background from '../../components/Background';
 
 export default function Register() {
 
@@ -17,31 +18,12 @@ export default function Register() {
 
     return (
         <View style={styles.container}>
+            <Background reverse={true}></Background>
             <View style={styles.content}>
-                <Image style={styles.appImage} source={require('../../../assets/app-logo.png')} />
+                <Image source={require('../../assets/images/trainer.png')} />
+                <Text style={styles.title}>Começe a treinar {"\n"} ainda hoje!</Text>
                 <InputContainer name="Nome" />
-                <InputContainer name="E-mail" />
                 <InputContainer name="Senha" />
-                <View style={styles.datePickerContainer}> 
-                    <Text style={styles.label}>Data de Nascimento</Text>
-                    <DatePicker
-                        style={styles.datePicker}
-                        date={date}
-                        format="DD-MM-YYYY"
-                        showIcon={false}
-                        onDateChange={setDate}
-                        customStyles={{
-                            dateInput: {
-                                marginLeft: 8,
-                                alignItems: 'flex-start',
-                                borderWidth: 0
-                            },
-                            dateText: {
-                                color: 'white'
-                            }
-                        }}
-                    />
-                </View>
                 <MainButton name="Confirmar" handleOnPress={handleRegister} />
             </View>
         </View>
@@ -52,17 +34,20 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#2e2e2e'
+        backgroundColor: 'transparent'
     },
     content: {
         alignItems: 'center',
-        marginTop: '40%'
+        justifyContent: 'center',
+        marginTop: '25%'
     },
-    appImage: {
-        marginBottom: 24
-    },
-    datePickerContainer: {
-        width: '85%'
+    title: {
+        textAlign: 'center',
+        color: '#17B978',
+        fontSize: 24,
+        paddingTop: 15,
+        paddingBottom: 15,
+        fontFamily: 'OpenSans_400Regular'
     },
     label: {
         marginTop: 16,
@@ -71,10 +56,4 @@ const styles = StyleSheet.create({
         fontFamily: 'OpenSans_700Bold',
         color: '#17B978',
     },
-    datePicker: {
-        borderWidth: 1,
-        borderColor: '#17B978',
-        borderRadius: 5,
-        width: '100%',
-    }
 })

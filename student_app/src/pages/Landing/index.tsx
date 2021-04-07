@@ -19,7 +19,7 @@ export default function Landing() {
 
     return (
         <View style={styles.container}>
-            <Background></Background>
+            <Background reverse={false}></Background>
             <View style={styles.content}>
                 <Image source={require('../../assets/images/student.png')} />
                 <Text style={styles.title}>GO4WOD</Text>
@@ -47,33 +47,5 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 80,
         fontFamily: 'OpenSans_400Regular'
-    },
-    enterButton: {
-        width: '85%',
-        height: 48,
-        backgroundColor: '#17B978',
-        borderRadius: 8,
-        justifyContent: 'center'
-    },
-    enterButtonText: {
-        textAlign: 'center',
-        color: '#fff',
-        fontSize: 20,
-        fontFamily: 'OpenSans_700Bold'
-    },
-    registerButton: {
-        width: '85%',
-        height: 48,
-        marginTop: 32,
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        justifyContent: 'center',
-        marginBottom: '30%'
-    },
-    registerButtonText: {
-        textAlign: 'center',
-        color: '#17B978',
-        fontSize: 20,
-        fontFamily: 'OpenSans_700Bold'
     }
 })

@@ -15,7 +15,7 @@ export default function Login() {
 
     return (
         <View style={styles.container}>
-            <Background></Background>
+            <Background reverse={false}></Background>
             <View style={styles.content}>
                 <Image source={require('../../assets/images/student.png')} />
                 <Text style={styles.title}>GO4WOD</Text>
@@ -41,9 +41,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: '25%'
     },
-    appImage: {
-        marginBottom: 48
-    },
     title: {
         color: '#17B978',
         fontSize: 35,
@@ -57,9 +54,6 @@ const styles = StyleSheet.create({
         width: '50%',
         marginBottom: 24,
         fontFamily: 'OpenSans_400Regular'
-    },
-    padding: {
-        marginTop: 16
     },
     inputContainer: {
         width: '85%'
