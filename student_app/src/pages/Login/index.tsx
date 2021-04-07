@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import Background from '../../components/Background';
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';
 
@@ -14,10 +15,10 @@ export default function Login() {
 
     return (
         <View style={styles.container}>
+            <Background></Background>
             <View style={styles.content}>
-                <Image style={styles.appImage} source={require('../../../assets/app-logo.png')} />
+                <Image source={require('../../assets/images/student.png')} />
                 <Text style={styles.title}>GO4WOD</Text>
-                <Text style={styles.text}>Você pode se sentir dolorido amanhã ou pode sentir pena amanhã. Você escolhe.</Text>
                 <InputContainer name="E-mail" />
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputText}>Password</Text>
@@ -33,21 +34,22 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#2e2e2e'
+        backgroundColor: 'transparent',
     },
     content: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '50%'
+        marginTop: '25%'
     },
     appImage: {
         marginBottom: 48
     },
     title: {
         color: '#17B978',
-        fontSize: 32,
-        marginBottom: 25,
-        fontFamily: 'OpenSans_700Bold'
+        fontSize: 35,
+        paddingTop: 15,
+        paddingBottom: 25,
+        fontFamily: 'OpenSans_400Regular'
     },
     text: {
         textAlign: 'center',

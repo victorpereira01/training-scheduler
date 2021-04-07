@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import MainButton from '../../components/MainButton';
 import AltButton from '../../components/AltButton';
+import Background from '../../components/Background';
 
 export default function Landing() {
 
@@ -18,12 +19,12 @@ export default function Landing() {
 
     return (
         <View style={styles.container}>
+            <Background></Background>
             <View style={styles.content}>
-                <Image style={styles.appImage} source={require('../../../assets/app-logo.png')} />
+                <Image source={require('../../assets/images/student.png')} />
                 <Text style={styles.title}>GO4WOD</Text>
-                <Text style={styles.text}>Você pode se sentir dolorido amanhã ou pode sentir pena amanhã. Você escolhe.</Text>
                 <MainButton name="Entrar" handleOnPress={handleLogin} />
-                <AltButton name="Registrar-se" handleOnPress={handleRegister}/>
+                <AltButton name="Registrar-se" handleOnPress={handleRegister} />
             </View>
         </View>
     );
@@ -33,27 +34,18 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        backgroundColor: '#2e2e2e'
+        backgroundColor: 'transparent',
     },
     content: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '50%'
-    },
-    appImage: {
-        marginBottom: 48
+        marginTop: '25%'
     },
     title: {
         color: '#17B978',
-        fontSize: 32,
-        marginBottom: 25,
-        fontFamily: 'OpenSans_700Bold'
-    },
-    text: {
-        textAlign: 'center',
-        color: '#fff',
-        width: '50%',
-        marginBottom: 48,
+        fontSize: 35,
+        paddingTop: 15,
+        paddingBottom: 80,
         fontFamily: 'OpenSans_400Regular'
     },
     enterButton: {
