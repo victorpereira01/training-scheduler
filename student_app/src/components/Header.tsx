@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Image style={styles.appImage} source={require('../../assets/app-logo.png')} />
+                <Image style={styles.appImage} source={require('../assets/images/dumbbell.png')} />
                 <Text style={styles.title}>GO4WOD</Text>
             </View>
         </View>
@@ -16,9 +16,18 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '12%',
-        backgroundColor: '#2e2e2e',
+        backgroundColor: 'white',
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     },
     content: {
         flexDirection: 'row',
@@ -34,6 +43,7 @@ const styles = StyleSheet.create({
         color: '#17B978',
         fontFamily: 'OpenSans_700Bold',
         fontSize: 21,
-        height: '100%'
+        height: '100%',
+        paddingLeft: 10
     }
 })

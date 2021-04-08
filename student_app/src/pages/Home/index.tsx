@@ -1,9 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import AltButton from '../../components/AltButton';
+import Background from '../../components/Background';
 import Header from '../../components/Header';
 import HomeAltButton from '../../components/HomeAltButton';
 import HomeMainButton from '../../components/HomeMainButton';
+import MainButton from '../../components/MainButton';
 
 export default function Home() {
 
@@ -28,18 +31,13 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <Header />
-            <View style={styles.buttonContainer}>
-                <View style={styles.button}>
-                    <HomeMainButton title="Agende um Treino" handleOnPress={handleNavigateToSchedule} />
-                </View>
-                <View style={styles.button}>
-                    <HomeMainButton title="Treinos Agendados" handleOnPress={handleNavigateToHistory} />
-                </View>
-                <View style={styles.button}>
-                    <HomeMainButton title="Perfil" handleOnPress={handleNavigateToProfile} />
-                </View>
-                <View style={styles.button}>
-                    <HomeAltButton title="Sair" handleOnPress={handleNavigateLogout} />
+            <View style={styles.content}>
+                <Text style={styles.title}>Bem-vindo, X!</Text>
+                <Text style={styles.subtitle}>O seu limite fica depois daquela vontade de parar.</Text>
+                <Image style={styles.image} source={require('../../assets/images/training.png')} />
+                <View style={styles.buttonContent}>
+                    <MainButton name="Ver WOD" handleOnPress={() => { }}></MainButton>
+                    <AltButton name="Seus treinos" handleOnPress={() => { }}></AltButton>
                 </View>
             </View>
         </View>
@@ -49,14 +47,26 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        width: '100%'
-    },
-    buttonContainer: {
-        marginTop: 36
-    },
-    button: {
         width: '100%',
-        alignItems: 'center',
-        marginTop: 56
+        backgroundColor: 'transparent',
+    },
+    content: {
+        padding: 15
+    },
+    title: {
+        fontSize: 24,
+        color: '#17B978'
+    },
+    subtitle: {
+        paddingTop: 5,
+        fontSize: 14,
+        color: '#17B978'
+    },
+    image: {
+        alignSelf: 'center',
+        marginTop: '5%'
+    },
+    buttonContent: {
+        marginTop: '10%'
     }
 })

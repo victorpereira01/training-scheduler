@@ -66,12 +66,13 @@ const styles = StyleSheet.create({
         color: '#17B978'
     },
     input: {
-        color: 'white',
+        color: '#3d3d3d',
         fontSize: 18,
         borderWidth: 1,
-        borderRadius: 5,
+        borderRadius: 8,
         borderColor: '#17B978',
         height: 40,
-        padding: 10
+        padding: 10,
+        borderBottomWidth: 5
     }
 })

@@ -8,12 +8,14 @@ import Home from './pages/Home';
 import Schedule from './pages/Schedule';
 import TrainingHistory from './pages/TrainingHistory';
 import Profile from './pages/Profile';
+import { StatusBar } from 'expo-status-bar';
 
 const Stack = createStackNavigator();
 
 function Routes() {
     return (
         <NavigationContainer>
+            <StatusBar/>
             <Stack.Navigator headerMode='none'>
                 <Stack.Screen
                     name="Landing"
