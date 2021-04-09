@@ -5,7 +5,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
-import Schedule from './pages/Schedule';
+import Training from './pages/Training';
 import TrainingHistory from './pages/TrainingHistory';
 import Profile from './pages/Profile';
 import { StatusBar } from 'expo-status-bar';
@@ -40,8 +40,8 @@ function Routes() {
                     component={Home}
                 ></Stack.Screen>
                 <Stack.Screen
-                    name="Schedule"
-                    component={Schedule}
+                    name="Training"
+                    component={Training}
                 ></Stack.Screen>
                 <Stack.Screen
                     name="TrainingHistory"
