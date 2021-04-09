@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import AltBackground from '../../components/AltBackground';
 import Header from '../../components/Header';
-import ScheduledItem from '../../components/ScheduledItem';
+import TrainingItem from '../../components/TrainingItem';
 
 export default function TrainingHistory() {
     return (
         <View style={styles.container}>
             <Header />
+            <AltBackground />
             <SafeAreaView style={styles.nav}>
                 <ScrollView>
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
-                    <ScheduledItem />
+                    <TrainingItem />
+                    <TrainingItem />
+                    <TrainingItem />
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -32,8 +27,8 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     nav: {
-        height: '80%'
-,        marginTop: 24,
+        height: '80%',
+        marginTop: 24,
         margin: 18
     }
 })

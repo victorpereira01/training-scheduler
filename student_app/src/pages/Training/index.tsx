@@ -26,7 +26,7 @@ export default function Training() {
     return (
         <View style={styles.container}>
             <Header />
-            <AltBackground></AltBackground>
+            <AltBackground />
             <View style={styles.content}>
                 <View>
                     <Text style={styles.date}>{formattedDate}</Text>
@@ -35,7 +35,7 @@ export default function Training() {
                 <View style={styles.wodContainer}>
                     <Text style={styles.wodText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a nibh eu ipsum congue vehicula eu eu sem. Sed cursus odio eu lorem dapibus, eget ultricies tortor rutrum. Aenean eget ultricies arcu. </Text>
                 </View>
-                <MainButton name="Confirmar presença" handleOnPress={() => {}}/>
+                <MainButton name="Confirmar presença" handleOnPress={() => { }} />
             </View>
         </View>
     )
@@ -74,6 +74,8 @@ const styles = StyleSheet.create({
     wodText: {
         padding: 10,
         color: '#17B978',
-        fontSize: 16
+        fontSize: 16,
+        letterSpacing: 1.1,
+        lineHeight: 25
     }
 })
