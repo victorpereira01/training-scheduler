@@ -10,7 +10,7 @@ export default function Login() {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        navigation.navigate('Home');
+        navigation.navigate('FirstLogin');
     }
 
     return (

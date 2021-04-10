@@ -69,7 +69,15 @@ const styles = StyleSheet.create({
         borderColor: '#17B978',
         margin: 12,
         paddingTop: 15,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     wodText: {
         padding: 10,

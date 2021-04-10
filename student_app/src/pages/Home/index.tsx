@@ -3,7 +3,6 @@ import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import AltBackground from '../../components/AltBackground';
 import AltButton from '../../components/AltButton';
-import Background from '../../components/Background';
 import Header from '../../components/Header';
 import MainButton from '../../components/MainButton';
 

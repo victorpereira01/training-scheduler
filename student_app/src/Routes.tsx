@@ -9,13 +9,14 @@ import Training from './pages/Training';
 import TrainingHistory from './pages/TrainingHistory';
 import Profile from './pages/Profile';
 import { StatusBar } from 'expo-status-bar';
+import FirstLogin from './pages/FirstLogin';
 
 const Stack = createStackNavigator();
 
 function Routes() {
     return (
         <NavigationContainer>
-            <StatusBar/>
+            <StatusBar />
             <Stack.Navigator headerMode='none'>
                 <Stack.Screen
                     name="Landing"
@@ -38,6 +39,10 @@ function Routes() {
                 <Stack.Screen
                     name="Home"
                     component={Home}
+                ></Stack.Screen>
+                <Stack.Screen
+                    name="FirstLogin"
+                    component={FirstLogin}
                 ></Stack.Screen>
                 <Stack.Screen
                     name="Training"
