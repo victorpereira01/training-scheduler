@@ -1,19 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import AltBackground from '../../components/AltBackground';
 import AltButton from '../../components/AltButton';
-import Background from '../../components/Background';
 import Header from '../../components/Header';
-import HomeAltButton from '../../components/HomeAltButton';
-import HomeMainButton from '../../components/HomeMainButton';
 import MainButton from '../../components/MainButton';
 
 export default function Home() {
 
     const navigation = useNavigation();
 
-    const handleNavigateToSchedule = () => {
-        navigation.navigate('Schedule');
+    const handleNavigateToTraining = () => {
+        navigation.navigate('Training');
     }
 
     const handleNavigateToHistory = () => {
@@ -31,13 +29,14 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <Header />
+            <AltBackground />
             <View style={styles.content}>
                 <Text style={styles.title}>Bem-vindo, X!</Text>
                 <Text style={styles.subtitle}>O seu limite fica depois daquela vontade de parar.</Text>
                 <Image style={styles.image} source={require('../../assets/images/training.png')} />
                 <View style={styles.buttonContent}>
-                    <MainButton name="Ver WOD" handleOnPress={() => { }}></MainButton>
-                    <AltButton name="Seus treinos" handleOnPress={() => { }}></AltButton>
+                    <MainButton name="Ver WOD" handleOnPress={handleNavigateToTraining}></MainButton>
+                    <AltButton name="Seus treinos" handleOnPress={handleNavigateToHistory}></AltButton>
                 </View>
             </View>
         </View>

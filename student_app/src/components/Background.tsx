@@ -25,14 +25,14 @@ export default function Background({ reverse }: Props) {
 
 const styles = StyleSheet.create({
     reverseBackgroundTop: {
-        backgroundColor: 'rgba(23, 185, 120,0.25)',
+        backgroundColor: 'rgba(23, 185, 120, 0.15)',
         height: '38%',
         width: '100%',
         position: 'absolute',
         borderBottomRightRadius: 175,
     },
     reverseBackgroundBottom: {
-        backgroundColor: 'rgba(23, 185, 120,0.25)',
+        backgroundColor: 'rgba(23, 185, 120, 0.15)',
         position: 'absolute',
         width: '100%',
         height: '100%',
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
         borderTopStartRadius: 175
     },
     backgroundTop: {
-        backgroundColor: 'rgba(23, 185, 120,0.25)',
+        backgroundColor: 'rgba(23, 185, 120, 0.15)',
         height: '38%',
         width: '100%',
         position: 'absolute',
         borderBottomLeftRadius: 175,
     },
     backgroundBottom: {
-        backgroundColor: 'rgba(23, 185, 120,0.25)',
+        backgroundColor: 'rgba(23, 185, 120, 0.15)',
         position: 'absolute',
         width: '100%',
         height: '100%',
