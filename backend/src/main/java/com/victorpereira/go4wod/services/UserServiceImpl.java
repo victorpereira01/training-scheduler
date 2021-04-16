@@ -13,8 +13,8 @@ import com.victorpereira.go4wod.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,9 +27,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TrainingRepository trainingRepository;
-
-    @Autowired
-    private TrainingService trainingService;
 
     @Override
     public List<UserDTO> findAll() {
@@ -46,16 +43,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserNewDTO insertUser(UserNewDTO userNewDto) {
-        User user = new User(userNewDto.getId(), userNewDto.getName(), userNewDto.getEmail(),
-                userNewDto.getPassword(), userNewDto.getBirthDate(), userNewDto.getType());
+        User user = new User(userNewDto.getId(), null, userNewDto.getEmail(),
+                userNewDto.getPassword(), null, UserType.STUDENT);
         return new UserNewDTO(userRepository.save(user));
     }
 
     @Override
     public UserNewDTO updateUser(Long id, UserNewDTO newUser) {
-        findById(id);
-        User user = new User(id, newUser.getName(), newUser.getEmail(), newUser.getPassword(),
-                newUser.getBirthDate(), newUser.getType());
+        User user = userRepository.findById(id).orElseThrow(() ->
+                new ObjectNotFoundException("Object not found for id: " + id + ", of type: " + User.class.getName()));
+
+        user.setName(newUser.getName());
+        user.setBirthDate(newUser.getBirthDate());
+        if (newUser.getEmail() != null) {
+            user.setEmail(newUser.getEmail());
+        }
         return new UserNewDTO(userRepository.save(user));
     }
 
@@ -87,11 +89,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void subscribeUserToTraining(Long userId, LocalDateTime date) {
+    public void subscribeUserToTraining(Long userId, String date) {
         UserNewDTO userNewDTO = findById(userId);
         UserDTO userDTO = findAll().stream().filter(usr -> usr.getId().equals(userId)).findFirst().get();
 
-        Training training = trainingRepository.findByDate(formatDate(date)).orElseThrow(() ->
+        Training training = trainingRepository.findByDate(LocalDate.parse(date)).orElseThrow(() ->
                 new ObjectNotFoundException("Object not found for date: " + date + ", of type: " + Training.class.getName()));
         userDTO.setTrainings(Collections.singletonList(new TrainingDTO(training)));
 

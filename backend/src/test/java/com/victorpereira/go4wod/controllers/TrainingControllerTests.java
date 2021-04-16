@@ -69,7 +69,7 @@ public class TrainingControllerTests {
         Training training = TrainingBuilder.builder().build().toTraining();
         TrainingDTO trainingDTO = new TrainingDTO(training);
 
-        when(trainingService.findByDate(trainingDTO.getDate())).thenReturn(trainingDTO);
+        when(trainingService.findByDate(trainingDTO.getDate().toString())).thenReturn(trainingDTO);
 
         mockMvc.perform(get(API_URL_PATH + "/" + trainingDTO.getDate())
                 .contentType(MediaType.APPLICATION_JSON))

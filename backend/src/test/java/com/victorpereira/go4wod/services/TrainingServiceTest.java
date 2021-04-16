@@ -85,7 +85,7 @@ public class TrainingServiceTest {
         when(trainingRepository.findByDate(expectedSavedTraining.getDate()))
                 .thenReturn(Optional.of(expectedSavedTraining));
 
-        TrainingDTO foundTrainingDTO = trainingService.findByDate(expectedSavedTraining.getDate());
+        TrainingDTO foundTrainingDTO = trainingService.findByDate(expectedSavedTraining.getDate().toString());
         assertEquals(foundTrainingDTO.getId(), expectedTrainingDTO.getId());
         assertEquals(foundTrainingDTO.getWod(), expectedTrainingDTO.getWod());
         assertEquals(foundTrainingDTO.getDate(), expectedTrainingDTO.getDate());
@@ -96,7 +96,8 @@ public class TrainingServiceTest {
         Training expectedSavedTraining = TrainingBuilder.builder().build().toTraining();
         TrainingDTO expectedTrainingDTO = new TrainingDTO(expectedSavedTraining);
 
-        assertThrows(ObjectNotFoundException.class, () -> trainingService.findByDate(expectedTrainingDTO.getDate()));
+        assertThrows(ObjectNotFoundException.class, () -> trainingService.findByDate(
+                expectedTrainingDTO.getDate().toString()));
     }
 
     @Test

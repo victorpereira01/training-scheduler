@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +18,7 @@ public class TrainingUserDTO implements Serializable {
 
     private String wod;
 
-    private LocalDateTime date;
+    private LocalDate date;
 
     public TrainingUserDTO(Training training) {
         this.id = training.getId();

@@ -29,7 +29,7 @@ public class TrainingController {
     @GetMapping(value = "/{date}")
     public ResponseEntity<TrainingDTO> findByDate(@PathVariable String date) {
         String formattedDate = date.concat("T00:00:00");
-        TrainingDTO trainingDTO = trainingService.findByDate(LocalDateTime.parse(formattedDate));
+        TrainingDTO trainingDTO = trainingService.findByDate(date);
         return ResponseEntity.ok().body(trainingDTO);
     }
 

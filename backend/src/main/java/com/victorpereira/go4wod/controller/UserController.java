@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -77,7 +77,7 @@ public class UserController {
     public ResponseEntity<Void> subscribeUserToTraining(
             @PathVariable("userId") Long userId,
             @PathVariable("date") String date) {
-        userService.subscribeUserToTraining(userId, LocalDateTime.parse(date));
+        userService.subscribeUserToTraining(userId, date);
         return ResponseEntity.noContent().build();
     }
 }

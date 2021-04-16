@@ -39,16 +39,15 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public TrainingDTO findByDate(LocalDateTime date) {
-        LocalDateTime formatedDate = formatDateToInsert(date);
-        return new TrainingDTO(trainingRepository.findByDate(formatedDate).orElseThrow(() ->
+    public TrainingDTO findByDate(String date) {
+        return new TrainingDTO(trainingRepository.findByDate(LocalDate.parse(date)).orElseThrow(() ->
                 new ObjectNotFoundException("Object not found for date: " + date + ", of type: " + Training.class.getName())));
     }
 
     @Override
     public TrainingDTO insertTraining(TrainingDTO training) {
         if (!alreadyExists(training)) {
-            training.setDate(formatDateToInsert(training.getDate()));
+            training.setDate(training.getDate());
             Training newTraining = new Training(training.getId(), training.getWod(), training.getDate(), new ArrayList<>());
             return new TrainingDTO(trainingRepository.save(newTraining));
         } else {

@@ -1,13 +1,11 @@
 package com.victorpereira.go4wod.domains;
 
-import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -23,12 +21,12 @@ public class Training {
 
     private String wod;
 
-    private LocalDateTime date;
+    private LocalDate date;
 
     @ManyToMany(mappedBy = "trainings", fetch = FetchType.EAGER)
     private List<User> users;
 
-    public Training(Long id, String wod, LocalDateTime date) {
+    public Training(Long id, String wod, LocalDate date) {
         this.id = id;
         this.wod = wod;
         this.date = date;

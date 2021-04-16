@@ -25,5 +25,5 @@ public interface UserService {
 
     void deleteOneTrainingByUserId(Long userId, Long trainingId);
 
-    void subscribeUserToTraining(Long userId, LocalDateTime date);
+    void subscribeUserToTraining(Long userId, String date);
 }

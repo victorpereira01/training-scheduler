@@ -1,7 +1,5 @@
 package com.victorpereira.go4wod.domains;
 
-import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
-import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.enums.UserType;
 import lombok.*;
 
