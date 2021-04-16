@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -100,11 +99,5 @@ public class UserServiceImpl implements UserService {
         User updatedUser = new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(), userNewDTO.getPassword(),
                 userNewDTO.getBirthDate(), userNewDTO.getType(), Collections.singletonList(training));
         userRepository.save(updatedUser);
-    }
-
-    private LocalDateTime formatDate(LocalDateTime localDateTime) {
-        String[] splittedDate = localDateTime.toString().split("T");
-        String date = splittedDate[0] + "T00:00:00";
-        return LocalDateTime.parse(date);
     }
 }

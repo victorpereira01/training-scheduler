@@ -1,8 +1,6 @@
 package com.victorpereira.go4wod.domains;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -25,6 +23,13 @@ public class Training {
 
     @ManyToMany(mappedBy = "trainings", fetch = FetchType.EAGER)
     private List<User> users;
+
+    @PreRemove
+    public void removeTrainingFromUsers() {
+        for (User user : users) {
+            user.getTrainings().remove(this);
+        }
+    }
 
     public Training(Long id, String wod, LocalDate date) {
         this.id = id;

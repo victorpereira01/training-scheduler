@@ -2,7 +2,6 @@ package com.victorpereira.go4wod.services;
 
 import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface TrainingService {

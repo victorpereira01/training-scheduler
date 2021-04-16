@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,7 +69,8 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public void deleteTraining(Long id) {
-        trainingRepository.deleteById(findById(id).getId());
+        TrainingDTO trainingDTO = findById(id);
+        trainingRepository.deleteById(trainingDTO.getId());
     }
 
     private boolean alreadyExists(TrainingDTO training) {
@@ -80,11 +80,5 @@ public class TrainingServiceImpl implements TrainingService {
         }
         return trainings.stream().anyMatch(trn ->
                 trn.getDate().equals(training.getDate()));
-    }
-
-    private LocalDateTime formatDateToInsert(LocalDateTime localDateTime) {
-        String[] splittedDate = localDateTime.toString().split("T");
-        String date = splittedDate[0] + "T00:00:00";
-        return LocalDateTime.parse(date);
     }
 }

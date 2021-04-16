@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -28,7 +27,6 @@ public class TrainingController {
 
     @GetMapping(value = "/{date}")
     public ResponseEntity<TrainingDTO> findByDate(@PathVariable String date) {
-        String formattedDate = date.concat("T00:00:00");
         TrainingDTO trainingDTO = trainingService.findByDate(date);
         return ResponseEntity.ok().body(trainingDTO);
     }

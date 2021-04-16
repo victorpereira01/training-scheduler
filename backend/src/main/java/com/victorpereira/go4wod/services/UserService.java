@@ -4,7 +4,6 @@ import com.victorpereira.go4wod.domains.dtos.TrainingUserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.dtos.UserNewDTO;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface UserService {
