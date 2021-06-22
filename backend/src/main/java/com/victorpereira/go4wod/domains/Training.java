@@ -1,10 +1,13 @@
 package com.victorpereira.go4wod.domains;
 
+import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
+import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -35,5 +38,11 @@ public class Training {
         this.id = id;
         this.wod = wod;
         this.date = date;
+    }
+
+    public Training(TrainingDTO trainingDTO) {
+        this.id = trainingDTO.getId();
+        this.wod = trainingDTO.getWod();
+        this.date = trainingDTO.getDate();
     }
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,8 +35,7 @@ public class TrainingDTO implements Serializable {
         this.id = training.getId();
         this.wod = training.getWod();
         this.date = training.getDate();
-        this.users = training.getUsers().stream()
-                .map(UserDTO::new).collect(Collectors.toList());
+        this.users = training.getUsers().stream().map(UserDTO::new).collect(Collectors.toList());
     }
 }
 

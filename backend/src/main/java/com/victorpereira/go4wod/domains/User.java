@@ -1,5 +1,6 @@
 package com.victorpereira.go4wod.domains;
 
+import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import com.victorpereira.go4wod.domains.enums.UserType;
 import lombok.*;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -53,5 +55,12 @@ public class User {
         this.birthDate = birthDate;
         this.type = type;
         this.trainings = trainings;
+    }
+
+    public User(UserDTO userDTO) {
+        this.id = userDTO.getId();
+        this.name   = userDTO.getName();
+        this.email = userDTO.getEmail();
+        this.trainings = userDTO.getTrainings().stream().map(Training::new).collect(Collectors.toList());
     }
 }
