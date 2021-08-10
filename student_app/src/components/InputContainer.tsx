@@ -3,14 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 type Props = {
-    name: string
+    name: string,
+    onChangeText: (str: string) => void,
 }
 
-export default function InputContainer({ name }: Props) {
+export default function InputContainer({ name, onChangeText }: Props) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{name}</Text>
-            <TextInput style={styles.input}></TextInput>
+            <TextInput style={styles.input} onChangeText={onChangeText}></TextInput>
         </View>
     )
 }

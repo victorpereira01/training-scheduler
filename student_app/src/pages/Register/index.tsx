@@ -3,17 +3,30 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';
-import DatePicker from 'react-native-datepicker';
 import Background from '../../components/Background';
+import api from '../../services/api';
 
 export default function Register() {
 
     const navigation = useNavigation();
 
-    const [date, setDate] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleRegister = () => {
-        navigation.navigate('Landing');
+    const handleRegister = async () => {
+        const user = {
+            email,
+            password
+        }
+
+        try {
+            await api.post('/users', user);
+            alert('Cadastro realizado!');
+
+        } catch (error) {
+            alert(error);
+            console.log(error);
+        }
     }
 
     return (
@@ -22,8 +35,8 @@ export default function Register() {
             <View style={styles.content}>
                 <Image source={require('../../assets/images/trainer.png')} />
                 <Text style={styles.title}>Começe a treinar {"\n"} ainda hoje!</Text>
-                <InputContainer name="Nome" />
-                <InputContainer name="Senha" />
+                <InputContainer name="Email" onChangeText={setEmail} />
+                <InputContainer name="Senha" onChangeText={setPassword} />
                 <MainButton name="Confirmar" handleOnPress={handleRegister} />
             </View>
         </View>
