@@ -5,6 +5,8 @@ import com.victorpereira.go4wod.domains.enums.UserType;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +24,11 @@ public class User {
 
     private String name;
 
+    @Size(min = 4, max = 100, message = "Email must be between 4 and 100 characters")
+    @Email(message = "Email should be valid")
     private String email;
 
+    @Size(min = 4, message = "Password must be bigger than 4 characters")
     private String password;
 
     private LocalDate birthDate;
@@ -59,7 +64,7 @@ public class User {
 
     public User(UserDTO userDTO) {
         this.id = userDTO.getId();
-        this.name   = userDTO.getName();
+        this.name = userDTO.getName();
         this.email = userDTO.getEmail();
         this.trainings = userDTO.getTrainings().stream().map(Training::new).collect(Collectors.toList());
     }

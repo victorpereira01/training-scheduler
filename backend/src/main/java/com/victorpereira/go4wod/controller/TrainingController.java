@@ -5,6 +5,7 @@ import com.victorpereira.go4wod.services.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,7 +33,7 @@ public class TrainingController {
     }
 
     @PostMapping
-    public ResponseEntity<TrainingDTO> insert(@RequestBody TrainingDTO training) {
+    public ResponseEntity<TrainingDTO> insert(@Validated @RequestBody TrainingDTO training) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(training.getId()).toUri();
         TrainingDTO newTraining = trainingService.insertTraining(training);

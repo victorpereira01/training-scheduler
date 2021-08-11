@@ -7,6 +7,7 @@ import com.victorpereira.go4wod.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserNewDTO> insert(@RequestBody UserNewDTO user) {
+    public ResponseEntity<UserNewDTO> insert(@Validated @RequestBody UserNewDTO user) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(user.getId()).toUri();
         UserNewDTO newUser = userService.insertUser(user);

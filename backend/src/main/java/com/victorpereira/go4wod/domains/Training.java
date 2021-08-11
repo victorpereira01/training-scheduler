@@ -1,13 +1,12 @@
 package com.victorpereira.go4wod.domains;
 
 import com.victorpereira.go4wod.domains.dtos.TrainingDTO;
-import com.victorpereira.go4wod.domains.dtos.UserDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +21,7 @@ public class Training {
 
     private String wod;
 
+    @NotEmpty(message = "Mandatory")
     private LocalDate date;
 
     @ManyToMany(mappedBy = "trainings", fetch = FetchType.EAGER)
