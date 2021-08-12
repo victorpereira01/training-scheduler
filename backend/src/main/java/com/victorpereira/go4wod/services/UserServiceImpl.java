@@ -42,6 +42,13 @@ public class UserServiceImpl implements UserService {
 
     @CrossOrigin
     @Override
+    public UserNewDTO findByEmail(String email) {
+        return new UserNewDTO(userRepository.findByEmail(email).orElseThrow(() ->
+                new ObjectNotFoundException("Object not found for email: " + email + ", of type: " + User.class.getName())));
+    }
+
+    @CrossOrigin
+    @Override
     public UserNewDTO insertUser(UserNewDTO userNewDto) {
         User user = new User(userNewDto.getId(), null, userNewDto.getEmail(),
                 userNewDto.getPassword(), null, UserType.STUDENT);

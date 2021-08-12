@@ -36,6 +36,11 @@ public class UserController {
         return ResponseEntity.created(uri).body(newUser);
     }
 
+    @GetMapping(value = "/email")
+    public ResponseEntity<UserNewDTO> findByEmail(@Validated @RequestParam(value = "value") String email) {
+        return ResponseEntity.ok().body(userService.findByEmail(email));
+    }
+
     @PutMapping(value = "/{id}")
     public ResponseEntity<UserNewDTO> update(@PathVariable Long id, @RequestBody UserNewDTO user) {
         UserNewDTO newUser = userService.updateUser(id, user);

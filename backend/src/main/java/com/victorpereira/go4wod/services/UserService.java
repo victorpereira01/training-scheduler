@@ -12,6 +12,8 @@ public interface UserService {
 
     UserNewDTO findById(Long id);
 
+    UserNewDTO findByEmail(String email);
+
     UserNewDTO insertUser(UserNewDTO user);
 
     UserNewDTO updateUser(Long id, UserNewDTO user);
