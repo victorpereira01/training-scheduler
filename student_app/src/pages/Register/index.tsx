@@ -1,10 +1,31 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, View } from 'react-native';
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';
 import Background from '../../components/Background';
 import api from '../../services/api';
+import EmailInput from '../../components/EmailInput';
+
+type Error = {
+    fieldName: string,
+    message: string,
+}
+
+const showAlert = (errors: string) =>
+    Alert.alert(
+        "Erro ao realizar cadastro",
+        errors,
+        [
+            {
+                text: "OK",
+                style: "default",
+            },
+        ],
+        {
+            cancelable: false,
+        }
+    );
 
 export default function Register() {
 
@@ -20,12 +41,19 @@ export default function Register() {
         }
 
         try {
-            await api.post('/users', user);
+            const response = await api.post('/users', user);
             alert('Cadastro realizado!');
-
+            navigation.navigate('Landing');
         } catch (error) {
-            alert(error);
-            console.log(error);
+            const errorsList: string[] = [];
+            if (error.response.status == 422) {
+                error.response.data.errors.map((err: Error) => {
+                    errorsList.push(err.message);
+                })
+                showAlert(errorsList.join("\n"));
+            } else {
+                showAlert('Não foi possível realizar cadastro. Tente novamente mais tarde.');
+            }
         }
     }
 
@@ -35,8 +63,8 @@ export default function Register() {
             <View style={styles.content}>
                 <Image source={require('../../assets/images/trainer.png')} />
                 <Text style={styles.title}>Começe a treinar {"\n"} ainda hoje!</Text>
-                <InputContainer name="Email" onChangeText={setEmail} />
-                <InputContainer name="Senha" onChangeText={setPassword} />
+                <EmailInput name="Email" onChangeText={setEmail} />
+                <InputContainer name="Senha" isPassword={true} onChangeText={setPassword} />
                 <MainButton name="Confirmar" handleOnPress={handleRegister} />
             </View>
         </View>

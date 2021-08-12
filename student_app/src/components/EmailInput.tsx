@@ -4,17 +4,17 @@ import { TextInput } from 'react-native-gesture-handler';
 
 type Props = {
     name: string,
-    onChangeText: (str: string) => void,
-    isPassword: boolean
+    onChangeText: (str: string) => void
 }
 
-export default function InputContainer({ name, onChangeText, isPassword }: Props) {
+export default function EmailInput({ name, onChangeText }: Props) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{name}</Text>
-            <TextInput
-                secureTextEntry={isPassword}
-                style={styles.input}
+            <TextInput 
+                autoCapitalize='none' 
+                keyboardType='email-address' 
+                style={styles.input} 
                 onChangeText={onChangeText}
             >
             </TextInput>
