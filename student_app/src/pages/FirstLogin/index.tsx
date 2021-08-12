@@ -1,21 +1,50 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import AltBackground from '../../components/AltBackground';
 import Header from '../../components/Header';
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';
+import api from '../../services/api';
+
+const showAlert = (errors: string) =>
+    Alert.alert(
+        "Erro ao concluir cadastro",
+        errors,
+        [
+            {
+                text: "OK",
+                style: "default",
+            },
+        ],
+        {
+            cancelable: false,
+        }
+    );
 
 export default function FirstLogin() {
 
     const navigation = useNavigation();
 
-    const handleNavigateToTraining = () => {
-        navigation.navigate('Home');
-        // navigation.reset({
-        //     index: 0,
-        //     routes: [{name: 'Home'}],
-        //   });
+    const [name, setName] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+
+    const route = useRoute();
+    const userId = route.params;
+
+    const handleNavigateToTraining = async () => {
+        const user = {
+            name,
+            birthDate
+        }
+
+        try {
+            await api.put(`/users/${userId}`, user);
+            navigation.navigate('Home', userId);
+        } catch (error) {
+            showAlert(error);
+        }
     }
 
     return (
@@ -28,8 +57,8 @@ export default function FirstLogin() {
             </View>
             <View style={styles.wrapper}>
                 <View style={styles.inputWrapper}>
-                    <InputContainer name="Nome" />
-                    <InputContainer name="Data de nascimento" />
+                    <InputContainer name="Nome" onChangeText={setName} isPassword={false} />
+                    <InputContainer name="Data de nascimento" onChangeText={setBirthDate} isPassword={false} />
                 </View>
                 <MainButton name="Confirmar" handleOnPress={handleNavigateToTraining} />
             </View>
@@ -64,6 +93,24 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         marginBottom: '10%'
+    },
+    datePickerContainer: {
+        width: '85%'
+    },
+    datePickerText: {
+        marginTop: 16,
+        fontSize: 20,
+        paddingBottom: 5,
+        fontFamily: 'OpenSans_700Bold',
+        color: '#17B978'
+    },
+    datePicker: {
 
+        width: '100%',
+        alignSelf: 'center',
+        borderWidth: 1,
+        borderRadius: 8,
+        borderColor: '#17B978',
+        borderBottomWidth: 5
     }
 })

@@ -1,16 +1,51 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { useState } from 'react';
+import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import Background from '../../components/Background';
+import EmailInput from '../../components/EmailInput';
 import InputContainer from '../../components/InputContainer';
 import MainButton from '../../components/MainButton';
+import api from '../../services/api';
+
+const showAlert = (errors: string) =>
+    Alert.alert(
+        "Erro ao realizar login",
+        errors,
+        [
+            {
+                text: "OK",
+                style: "default",
+            },
+        ],
+        {
+            cancelable: false,
+        }
+    );
 
 export default function Login() {
-
     const navigation = useNavigation();
 
-    const handleLogin = () => {
-        navigation.navigate('FirstLogin');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            const response = await api.get(`/users/email?value=${email}`);
+            const userId = response.data.id;
+
+            if (response.data.password == password) {
+                if (response.data.name == null) {
+                    navigation.navigate('FirstLogin', userId);
+                } else {
+                    navigation.navigate('Home', userId);
+                }
+            } else {
+                showAlert('Email ou senha incorretos.');
+            }
+        } catch (error) {
+            showAlert('Email ou senha incorretos.');
+        }
     }
 
     return (
@@ -19,11 +54,8 @@ export default function Login() {
             <View style={styles.content}>
                 <Image source={require('../../assets/images/student.png')} />
                 <Text style={styles.title}>GO4WOD</Text>
-                <InputContainer name="E-mail" />
-                <View style={styles.inputContainer}>
-                    <Text style={styles.inputText}>Password</Text>
-                    <TextInput secureTextEntry style={styles.input}></TextInput>
-                </View>
+                <EmailInput name="E-mail" onChangeText={setEmail} />
+                <InputContainer name="Password" onChangeText={setPassword} isPassword={true} />
                 <MainButton name="Confirmar" handleOnPress={handleLogin} />
             </View>
         </View>
