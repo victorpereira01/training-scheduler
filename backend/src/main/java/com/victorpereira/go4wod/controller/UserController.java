@@ -28,6 +28,13 @@ public class UserController {
         return ResponseEntity.ok().body(users);
     }
 
+    @GetMapping(value = "/{id}")
+    @Transactional(readOnly = true)
+    public ResponseEntity<UserNewDTO> findById(@PathVariable(value = "id") Long id) {
+        UserNewDTO user = userService.findById(id);
+        return ResponseEntity.ok().body(user);
+    }
+
     @PostMapping
     public ResponseEntity<UserNewDTO> insert(@Validated @RequestBody UserNewDTO user) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

@@ -1,27 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import AltBackground from '../../components/AltBackground';
 import Header from '../../components/Header';
-import HourItem from '../../components/HourItem';
 import MainButton from '../../components/MainButton';
+import api from '../../services/api';
 
 export default function Training() {
 
-    const [date, setDate] = useState('');
     const [formattedDate, setFormattedDate] = useState('');
-    const [modalVisible, setModalVisible] = useState(false);
+    const [training, setTraining] = useState('');
 
     const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
         "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
     ];
 
     useEffect(() => {
-        const date = new Date().toLocaleDateString();
+        const date = new Date().toISOString();
         const formattedDate = new Date(date);
-        setFormattedDate(formattedDate.getDate().toString() + " de " + monthNames[formattedDate.getMonth()]);
-        setDate(new Date().toISOString().split("T")[0]);
+        setFormattedDate(formattedDate.getDate().toString() + ' de ' + monthNames[formattedDate.getMonth()]);
+
+        async function fetchUser() {
+            try {
+                const response = await api.get(`/trainings/${date.split('T')[0]}`);
+                setTraining(response.data.wod);
+            } catch (error) {
+                console.log('Training not found: ' + error);
+            }
+        }
+
+        fetchUser();
     }, [])
+
+    const handleNoTraining = (training: string) => {
+        if (training == '') {
+            return (
+                <View >
+                    <Image style={styles.image} source={require('../../assets/images/relaxation.png')} />
+                    <Text style={styles.freeDayPhrase}>Nada pra hoje, hora de descansar!</Text>
+                </View>
+            )
+        } else {
+            return (
+                <>
+                    <View style={styles.wodContainer}>
+                        <Text style={styles.wodText}>{training}</Text>
+                    </View>
+                    <MainButton name="Confirmar presença" handleOnPress={() => { }} />
+                </>
+            )
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -32,10 +60,7 @@ export default function Training() {
                     <Text style={styles.date}>{formattedDate}</Text>
                     <Text style={styles.phrase}>E bora pra mais um treino...</Text>
                 </View>
-                <View style={styles.wodContainer}>
-                    <Text style={styles.wodText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a nibh eu ipsum congue vehicula eu eu sem. Sed cursus odio eu lorem dapibus, eget ultricies tortor rutrum. Aenean eget ultricies arcu. </Text>
-                </View>
-                <MainButton name="Confirmar presença" handleOnPress={() => { }} />
+                {handleNoTraining(training)}
             </View>
         </View>
     )
@@ -55,9 +80,20 @@ const styles = StyleSheet.create({
         fontFamily: 'OpenSans_400Regular',
         color: '#17B978',
     },
+    image: {
+        alignSelf: 'center',
+        marginTop: '5%'
+    },
     phrase: {
         paddingTop: 5,
         marginBottom: '5%',
+        fontSize: 24,
+        fontFamily: 'OpenSans_400Regular',
+        color: '#17B978'
+    },
+    freeDayPhrase: {
+        textAlign: 'center',
+        paddingTop: 5,
         fontSize: 24,
         fontFamily: 'OpenSans_400Regular',
         color: '#17B978'

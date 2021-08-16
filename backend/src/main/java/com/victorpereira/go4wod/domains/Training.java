@@ -21,7 +21,6 @@ public class Training {
 
     private String wod;
 
-    @NotEmpty(message = "Mandatory")
     private LocalDate date;
 
     @ManyToMany(mappedBy = "trainings", fetch = FetchType.EAGER)
